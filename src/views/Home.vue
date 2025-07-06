@@ -17,7 +17,6 @@
 
         <v-divider class="grey darken-3" />
 
-        <!-- Navigation Items -->
         <v-list-item
           v-for="(item, i) in menuItems"
           :key="i"

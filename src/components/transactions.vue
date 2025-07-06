@@ -1,6 +1,8 @@
 <template>
   <v-container>
-    <h2 class="text-h5 font-weight-bold mb-4">Transaction History</h2>
+    <h2 class="text-h5 font-weight-bold mb-4">💼 Trade Transaction</h2>
+    <v-data-table :headers="headers" :items="transactions" dense></v-data-table>
+    <h2 class="text-h5 font-weight-bold mb-4">🏦 Account Transaction</h2>
     <v-data-table :headers="headers" :items="transactions" dense></v-data-table>
   </v-container>
 </template>

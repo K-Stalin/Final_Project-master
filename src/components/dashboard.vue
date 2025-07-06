@@ -9,51 +9,47 @@
     <v-row dense>
       <v-col cols="12" sm="4">
         <v-card class="pa-5 stat-card" outlined elevation="2">
-          <v-icon size="28" color="indigo" class="mb-2">mdi-bank</v-icon>
-          <h4 class="text-subtitle-1 text--secondary mb-1">Total Investment</h4>
-          <div class="text-h6 font-weight-bold">₹1,20,000</div>
+          <h4 class="text-subtitle-1 text--secondary mb-1">NIFTY 50</h4>
+          <div class="text-h6 font-weight-bold">26,461.00</div>
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
         <v-card class="pa-5 stat-card" outlined elevation="2">
-          <v-icon size="28" color="blue" class="mb-2">mdi-chart-line</v-icon>
-          <h4 class="text-subtitle-1 text--secondary mb-1">Current Value</h4>
-          <div class="text-h6 font-weight-bold">₹1,42,800</div>
+          <h4 class="text-subtitle-1 text--secondary mb-1">SENSEX</h4>
+          <div class="text-h6 font-weight-bold">83,432.89</div>
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
         <v-card class="pa-5 stat-card" outlined elevation="2">
-          <v-icon size="28" color="green" class="mb-2">mdi-cash</v-icon>
-          <h4 class="text-subtitle-1 text--secondary mb-1">Profit / Loss</h4>
-          <div class="text-h6 font-weight-bold green--text">+₹22,800</div>
+          <h4 class="text-subtitle-1 text--secondary mb-1">BANK NIFTY</h4>
+          <div class="text-h6 font-weight-bold">57,031.00</div>
         </v-card>
       </v-col>
     </v-row>
+    <v-container fluid class="pa-6">
+    <h2 class="text-h5 font-weight-bold  mb-6">📈 Stock Overview</h2>
 
-    <!-- Recent Activity -->
-    <v-card class="pa-6 mt-6" outlined>
-      <h3 class="text-subtitle-1 font-weight-medium mb-4">
-        📌 Recent Activity
-      </h3>
-      <v-simple-table dense>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Action</th>
-            <th>Stock</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(txn, i) in recentTransactions" :key="i">
-            <td>{{ txn.date }}</td>
-            <td>{{ txn.type }}</td>
-            <td>{{ txn.stock }}</td>
-            <td>₹{{ txn.amount }}</td>
-          </tr>
-        </tbody>
-      </v-simple-table>
-    </v-card>
+    <v-row dense>
+      <v-col
+        v-for="(stock, index) in stocks"
+        :key="index"
+        cols="12"
+        sm="6"
+        md="4"
+        lg="3"
+        xl="2"
+      >
+        <v-card class="pa-4 stock-card" flat>
+          <div class="text-subtitle-1 font-weight-bold white--text">{{ stock.name }}</div>
+          <div class="white--text mt-1">₹{{ stock.price }}</div>
+          <div :class="stock.change >= 0 ? 'green--text' : 'red--text'" class="mt-1 text-caption">
+            {{ stock.change >= 0 ? '+' : '' }}{{ stock.change }}
+          </div>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+
   </v-container>
 </template>
 
@@ -61,10 +57,12 @@
 export default {
   data() {
     return {
-      recentTransactions: [
-        { date: "2025-07-03", type: "Buy", stock: "TCS", amount: 15000 },
-        { date: "2025-07-02", type: "Sell", stock: "Infosys", amount: 8000 },
-        { date: "2025-07-01", type: "Add Funds", stock: "-", amount: 20000 },
+      stocks: [
+        { name: "Canara Bank", price: 2632.50, change: +184.90 },
+        { name: "SBI", price: 615.3, change: -21.13 },
+        { name: "HDFC Bank", price: 1520.4, change: +10.63 },
+        { name: "ICICI Bank", price: 890.0, change: -34.53 },
+        { name: "Axis Bank", price: 790.9, change: +59.11 },
       ],
     };
   },
@@ -77,12 +75,13 @@ export default {
   min-height: 100vh;
 }
 
-.stat-card {
-  border-radius: 16px;
-  transition: box-shadow 0.3s;
+.stock-card {
+  background-color: #1e293b;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+  transition: 0.2s ease;
 }
-
-.stat-card:hover {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+.stock-card:hover {
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.1);
 }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <v-app-bar app dense flat class="glass-navbar">
     <v-container class="d-flex justify-space-between align-center">
-      <!-- Logo -->
       <v-img src="@/assets/Logo.svg" alt="logo" max-width="120" contain />
 
       <!-- Navigation Links -->
